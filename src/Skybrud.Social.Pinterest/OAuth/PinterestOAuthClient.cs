@@ -200,7 +200,11 @@ namespace Skybrud.Social.Pinterest.OAuth {
 
             // Add an authorization header with the access token
             if (!query.ContainsKey("access_token") && !String.IsNullOrWhiteSpace(AccessToken)) {
-                request.Headers.Authorization = "Bearer " + AccessToken;
+
+                request.QueryString.Add("access_token", AccessToken);
+
+                // Apparently not all methods support a bearer token (getting the pins of a board)
+                //request.Headers.Authorization = "Bearer " + AccessToken;
             }
 
             // Set headers of the request
