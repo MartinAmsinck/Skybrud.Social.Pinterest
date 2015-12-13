@@ -39,6 +39,10 @@ namespace Skybrud.Social.Pinterest.OAuth {
 
         #region Endpoints
 
+        public PinterestBoardsRawEndpoint Boards { get; private set; }
+
+        public PinterestPinsRawEndpoint Pins { get; private set; }
+
         public PinterestUsersRawEndpoint Users { get; private set; }
 
         #endregion
@@ -51,6 +55,8 @@ namespace Skybrud.Social.Pinterest.OAuth {
         /// Initializes an OAuth client with empty information.
         /// </summary>
         public PinterestOAuthClient() {
+            Boards = new PinterestBoardsRawEndpoint(this);
+            Pins = new PinterestPinsRawEndpoint(this);
             Users = new PinterestUsersRawEndpoint(this);
         }
 
@@ -107,7 +113,6 @@ namespace Skybrud.Social.Pinterest.OAuth {
         }
 
         #endregion
-
 
         #region Methods
 

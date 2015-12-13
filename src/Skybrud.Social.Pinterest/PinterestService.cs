@@ -17,6 +17,16 @@ namespace Skybrud.Social.Pinterest {
         public PinterestOAuthClient Client { get; private set; }
 
         /// <summary>
+        /// Gets a reference to the boards endpoint.
+        /// </summary>
+        public PinterestBoardsEndpoint Boards { get; private set; }
+
+        /// <summary>
+        /// Gets a reference to the pins endpoint.
+        /// </summary>
+        public PinterestPinsEndpoint Pins { get; private set; }
+
+        /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
         public PinterestUsersEndpoint Users { get; private set; }
@@ -27,6 +37,8 @@ namespace Skybrud.Social.Pinterest {
 
         private PinterestService(PinterestOAuthClient client) {
             Client = client;
+            Boards = new PinterestBoardsEndpoint(this);
+            Pins = new PinterestPinsEndpoint(this);
             Users = new PinterestUsersEndpoint(this);
         }
 
