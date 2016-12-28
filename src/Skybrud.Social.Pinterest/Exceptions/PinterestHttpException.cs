@@ -7,7 +7,7 @@ namespace Skybrud.Social.Pinterest.Exceptions {
     /// <summary>
     /// Class representing an exception based on an error from the Pinterest API.
     /// </summary>
-    public class PinterestException : Exception {
+    public class PinterestHttpException : Exception {
 
         #region Properties
 
@@ -25,7 +25,7 @@ namespace Skybrud.Social.Pinterest.Exceptions {
 
         #region Constructors
 
-        public PinterestException(SocialHttpResponse response, PinterestError error) : base("The Pinterest API responded with an error (" + error.Message + ")") {
+        public PinterestHttpException(SocialHttpResponse response, PinterestError error) : base("The Pinterest API responded with an error (" + error.Message + ")") {
             Response = response;
             Error = error;
         }

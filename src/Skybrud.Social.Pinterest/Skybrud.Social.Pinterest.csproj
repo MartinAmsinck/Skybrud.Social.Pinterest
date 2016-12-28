@@ -57,7 +57,7 @@
     <Compile Include="Endpoints\Raw\PinterestBoardsRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\PinterestPinsRawEndpoint.cs" />
     <Compile Include="Endpoints\Raw\PinterestUsersRawEndpoint.cs" />
-    <Compile Include="Exceptions\PinterestException.cs" />
+    <Compile Include="Exceptions\PinterestHttpException.cs" />
     <Compile Include="Fields\PinterestPinFields.cs" />
     <Compile Include="Fields\PinterestField.cs" />
     <Compile Include="Fields\PinterestFieldsCollection.cs" />

@@ -31,7 +31,7 @@ namespace Skybrud.Social.Pinterest.Responses {
             PinterestError error = ParseJsonObject(response.Body, PinterestError.Parse);
 
             // Throw the exception
-            throw new PinterestException(response, error);
+            throw new PinterestHttpException(response, error);
 
         }
 
