@@ -55,7 +55,7 @@ namespace Skybrud.Social.Pinterest.Endpoints.Raw {
         /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
         public SocialHttpResponse GetPin(PinterestGetPinOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoAuthenticatedGetRequest("https://api.pinterest.com/v1/pins/" + options.Id, options);
+            return Client.DoHttpGetRequest("https://api.pinterest.com/v1/pins/" + options.Id, options);
         }
 
         public SocialHttpResponse GetPins(string username, string board) {
@@ -72,7 +72,7 @@ namespace Skybrud.Social.Pinterest.Endpoints.Raw {
 
         public SocialHttpResponse GetPins(PinterestGetPinsOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoAuthenticatedGetRequest("https://api.pinterest.com/v1/boards/" + options.Username + "/" + options.Board + "/pins", options);
+            return Client.DoHttpGetRequest("https://api.pinterest.com/v1/boards/" + options.Username + "/" + options.Board + "/pins", options);
         }
 
         #endregion

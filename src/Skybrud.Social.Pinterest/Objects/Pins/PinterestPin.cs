@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions.JObject;
-using Skybrud.Social.Time;
+using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Time;
 
 namespace Skybrud.Social.Pinterest.Objects.Pins {
 
@@ -16,7 +16,7 @@ namespace Skybrud.Social.Pinterest.Objects.Pins {
 
         // media
 
-        public SocialDateTime CreatedAt { get; private set; }
+        public EssentialsDateTime CreatedAt { get; private set; }
 
         public string Note { get; private set; }
 
@@ -41,7 +41,7 @@ namespace Skybrud.Social.Pinterest.Objects.Pins {
         private PinterestPin(JObject obj) {
             Creator = obj.GetObject("creator", PinterestPinCreator.Parse);
             Url = obj.GetString("url");
-            CreatedAt = obj.GetString("created_at", SocialDateTime.Parse);
+            CreatedAt = obj.GetString("created_at", EssentialsDateTime.Parse);
             Note = obj.GetString("note");
             Color = obj.GetString("color");
             Link = obj.GetString("link");

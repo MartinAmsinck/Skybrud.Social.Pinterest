@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Pinterest.Objects;
 using Skybrud.Social.Pinterest.Objects.Pins;
 
@@ -32,7 +32,7 @@ namespace Skybrud.Social.Pinterest.Responses.Pins {
 
             // Initialize the response object
             return new PinterestGetPinsResponse(response) {
-                Body = SocialUtils.ParseJsonObject(response.Body, PinterestGetPinsResponseBody.Parse)
+                Body = ParseJsonObject(response.Body, PinterestGetPinsResponseBody.Parse)
             };
 
         }

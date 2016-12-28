@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Pinterest.Scopes;
 
 namespace Skybrud.Social.Pinterest.Objects.Authentication {

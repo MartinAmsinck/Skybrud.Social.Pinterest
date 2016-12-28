@@ -1,5 +1,4 @@
 ﻿using System;
-using Skybrud.Social.Http;
 using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Fields;
 using Skybrud.Social.Pinterest.Options;

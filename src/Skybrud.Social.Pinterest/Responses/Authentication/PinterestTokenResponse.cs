@@ -1,6 +1,5 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
 using Skybrud.Social.Pinterest.Objects.Authentication;
 
 namespace Skybrud.Social.Pinterest.Responses.Authentication {
@@ -30,7 +29,7 @@ namespace Skybrud.Social.Pinterest.Responses.Authentication {
 
             // Initialize the response object
             return new PinterestTokenResponse(response) {
-                Body = SocialUtils.ParseJsonObject(response.Body, PinterestTokenResponseBody.Parse)
+                Body = ParseJsonObject(response.Body, PinterestTokenResponseBody.Parse)
             };
 
         }

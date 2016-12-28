@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Specialized;
-using System.Net;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
 using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Responses.Authentication;
 using Skybrud.Social.Pinterest.Scopes;
 
 namespace Skybrud.Social.Pinterest.OAuth {
     
-    public class PinterestOAuthClient {
+    public class PinterestOAuthClient : SocialHttpClient {
 
         #region Properties
 
@@ -158,53 +156,17 @@ namespace Skybrud.Social.Pinterest.OAuth {
             };
 
             // Make the call to the API
-            HttpWebResponse response = SocialUtils.DoHttpPostRequest("https://api.pinterest.com/v1/oauth/token", null, data);
-
-            // Wrap the native response class
-            SocialHttpResponse social = SocialHttpResponse.GetFromWebResponse(response);
+            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://api.pinterest.com/v1/oauth/token", null, data);
 
             // Parse the response
-            return PinterestTokenResponse.ParseResponse(social);
+            return PinterestTokenResponse.ParseResponse(response);
 
         }
-
-        /// <summary>
-        /// Makes an authenticated GET request to the specified URL.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        public SocialHttpResponse DoAuthenticatedGetRequest(string url) {
-            return DoAuthenticatedGetRequest(url, default(SocialQueryString));
-        }
-
-        /// <summary>
-        /// Makes an authenticated GET request to the specified URL.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <param name="options">The options for the call to the API.</param>
-        public SocialHttpResponse DoAuthenticatedGetRequest(string url, IGetOptions options) {
-            SocialQueryString query = options == null ? null : options.GetQueryString();
-            return DoAuthenticatedGetRequest(url, query);
-        }
-
-        /// <summary>
-        /// Makes an authenticated GET request to the specified URL.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <param name="query">The query string for the call.</param>
-        public SocialHttpResponse DoAuthenticatedGetRequest(string url, SocialQueryString query) {
-
-            // Initialize a new SocialQueryString if NULL
-            if (query == null) query = new SocialQueryString();
-            
-            // Configure the request
-            SocialHttpRequest request = new SocialHttpRequest {
-                Method = "GET",
-                Url = url,
-                QueryString = query
-            };
+        
+        protected override void PrepareHttpRequest(SocialHttpRequest request) {
 
             // Add an authorization header with the access token
-            if (!query.ContainsKey("access_token") && !String.IsNullOrWhiteSpace(AccessToken)) {
+            if (request.QueryString != null && !request.QueryString.ContainsKey("access_token") && !String.IsNullOrWhiteSpace(AccessToken)) {
 
                 request.QueryString.Add("access_token", AccessToken);
 
@@ -212,10 +174,6 @@ namespace Skybrud.Social.Pinterest.OAuth {
                 //request.Headers.Authorization = "Bearer " + AccessToken;
             }
 
-            // Set headers of the request
-
-            // Make a call to the API
-            return request.GetResponse();
 
         }
 

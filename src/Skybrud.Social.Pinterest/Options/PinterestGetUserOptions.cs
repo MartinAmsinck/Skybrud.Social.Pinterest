@@ -1,11 +1,11 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.Pinterest.Fields;
 
 namespace Skybrud.Social.Pinterest.Options {
     
-    public class PinterestGetUserOptions : IGetOptions {
+    public class PinterestGetUserOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -52,13 +52,13 @@ namespace Skybrud.Social.Pinterest.Options {
 
         #region Member methods
 
-        public SocialQueryString GetQueryString() {
+        public IHttpQueryString GetQueryString() {
 
             // Convert the collection of fields to a string
             string fields = (Fields == null ? "" : Fields.ToString()).Trim();
 
             // Construct the query string
-            SocialQueryString query = new SocialQueryString();
+            SocialHttpQueryString query = new SocialHttpQueryString();
             if (!String.IsNullOrWhiteSpace(fields)) query.Set("fields", fields);
 
             return query;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions.JObject;
-using Skybrud.Social.Time;
+using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Time;
 
 namespace Skybrud.Social.Pinterest.Objects.Users {
     
@@ -23,7 +23,7 @@ namespace Skybrud.Social.Pinterest.Objects.Users {
 
         public string Url { get; private set; }
 
-        public SocialDateTime CreatedAt { get; private set; }
+        public EssentialsDateTime CreatedAt { get; private set; }
 
         public PinterestUserImage Image { get; private set; }
 
@@ -76,7 +76,13 @@ namespace Skybrud.Social.Pinterest.Objects.Users {
             LastName = obj.GetString("last_name");
             AccountType = obj.GetString("account_type");
             Url = obj.GetString("url");
-            CreatedAt = obj.GetString("created_at", SocialDateTime.Parse);
+
+            try {
+                CreatedAt = obj.GetString("created_at", EssentialsDateTime.Parse);
+            } catch (Exception ex) {
+                throw new Exception("Unable to parse date " + obj.GetString("created_at") + " (" + obj.GetValue("created_at").GetType() + ")");
+            }
+
             Image = obj.GetObject("image", PinterestUserImage.Parse);
             Counts = obj.GetObject("counts", PinterestUserCounts.Parse);
             Id = obj.GetString("id");

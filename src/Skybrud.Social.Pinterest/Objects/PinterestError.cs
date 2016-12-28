@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions.JObject;
-using Skybrud.Social.Time;
+using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Time;
 
 namespace Skybrud.Social.Pinterest.Objects {
 
@@ -21,7 +21,7 @@ namespace Skybrud.Social.Pinterest.Objects {
 
         public string Host { get; private set; }
 
-        public SocialDateTime GeneratedAt { get; private set; }
+        public EssentialsDateTime GeneratedAt { get; private set; }
 
         public string Message { get; private set; }
 
@@ -59,7 +59,7 @@ namespace Skybrud.Social.Pinterest.Objects {
             Status = obj.GetString("status");
             Code = obj.GetInt32("code");
             Host = obj.GetString("host");
-            GeneratedAt = obj.GetString("generated_at", SocialDateTime.Parse);
+            GeneratedAt = obj.GetString("generated_at", EssentialsDateTime.Parse);
             Message = obj.GetString("message");
             Type = obj.GetString("type");
         }

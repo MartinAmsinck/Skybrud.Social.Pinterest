@@ -1,9 +1,5 @@
-﻿using System;
-using System.Net;
-using Newtonsoft.Json.Linq;
+﻿using System.Net;
 using Skybrud.Social.Http;
-using Skybrud.Social.Json;
-using Skybrud.Social.Json.Extensions.JObject;
 using Skybrud.Social.Pinterest.Exceptions;
 using Skybrud.Social.Pinterest.Objects;
 
@@ -32,7 +28,7 @@ namespace Skybrud.Social.Pinterest.Responses {
             if (response.StatusCode == HttpStatusCode.OK) return;
 
             // Parse the JSON response
-            PinterestError error = SocialUtils.ParseJsonObject(response.Body, PinterestError.Parse);
+            PinterestError error = ParseJsonObject(response.Body, PinterestError.Parse);
 
             // Throw the exception
             throw new PinterestException(response, error);

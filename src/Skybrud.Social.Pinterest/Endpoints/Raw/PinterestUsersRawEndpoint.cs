@@ -55,7 +55,7 @@ namespace Skybrud.Social.Pinterest.Endpoints.Raw {
         /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
         public SocialHttpResponse GetUser(PinterestGetUserOptions options) {
             if (options == null) throw new ArgumentNullException("options");
-            return Client.DoAuthenticatedGetRequest("https://api.pinterest.com/v1/users/" + options.Identifier + "/", options);
+            return Client.DoHttpGetRequest("https://api.pinterest.com/v1/users/" + options.Identifier + "/", options);
         }
 
         #endregion
