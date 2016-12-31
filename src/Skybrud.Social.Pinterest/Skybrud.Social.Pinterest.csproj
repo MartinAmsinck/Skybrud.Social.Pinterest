@@ -66,6 +66,7 @@
     <Compile Include="Fields\PinterestUserFields.cs" />
     <Compile Include="OAuth\PinterestOAuthClient.cs" />
     <Compile Include="Objects\Authentication\PinterestTokenSummary.cs" />
+    <Compile Include="Objects\Common\PinterestRateLimiting.cs" />
     <Compile Include="Objects\Common\PinterestAttribution.cs" />
     <Compile Include="Objects\Common\PinterestMedia.cs" />
     <Compile Include="Objects\Common\PinterestImage.cs" />
