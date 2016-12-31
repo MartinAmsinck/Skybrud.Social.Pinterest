@@ -6,6 +6,9 @@ using Skybrud.Social.Pinterest.Responses.Users;
 
 namespace Skybrud.Social.Pinterest.Endpoints {
 
+    /// <summary>
+    /// Class representing the users endpoint.
+    /// </summary>
     public class PinterestUsersEndpoint {
 
         #region Properties
@@ -35,7 +38,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         #region Member methods
 
         /// <summary>
-        /// Gets information about the user with the specified <code>identifier</code>.
+        /// Gets information about the user with the specified <paramref name="identifier"/>.
         /// </summary>
         /// <param name="identifier">The identifier of the user.</param>
         /// <returns>Returns an instance of <code>PinterestGetUserResponse</code> representing the response.</returns>
@@ -45,7 +48,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         }
 
         /// <summary>
-        /// Gets information about the user with the specified <code>identifier</code>.
+        /// Gets information about the user with the specified <paramref name="identifier"/>.
         /// </summary>
         /// <param name="identifier">The identifier of the user.</param>
         /// <param name="fields">The fields that should be returned.</param>
@@ -56,7 +59,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         }
 
         /// <summary>
-        /// Gets information about the user matching the specified <code>options</code>.
+        /// Gets information about the user matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
         /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>

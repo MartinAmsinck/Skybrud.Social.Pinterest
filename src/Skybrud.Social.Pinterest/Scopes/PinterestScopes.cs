@@ -1,5 +1,8 @@
 ﻿namespace Skybrud.Social.Pinterest.Scopes {
-
+    
+    /// <summary>
+    /// Static class with constants for the known scopes of the Pinterest API.
+    /// </summary>
     public static class PinterestScopes {
 
         /// <summary>

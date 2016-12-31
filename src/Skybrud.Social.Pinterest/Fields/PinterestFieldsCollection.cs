@@ -80,6 +80,7 @@ namespace Skybrud.Social.Pinterest.Fields {
         /// Initializes a new collection based on the specified string of fields.
         /// </summary>
         /// <param name="fields">The string of fields the collection should be based on.</param>
+        /// <returns>An instance of <see cref="PinterestFieldsCollection"/> based on <paramref name="fields"/>.</returns>
         public static implicit operator PinterestFieldsCollection(string fields) {
             PinterestFieldsCollection collection = new PinterestFieldsCollection();
             foreach (string name in (fields ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) {
@@ -92,6 +93,7 @@ namespace Skybrud.Social.Pinterest.Fields {
         /// Initializes a new collection based on the specified array of fields.
         /// </summary>
         /// <param name="fields">The array of fields the collection should be based on.</param>
+        /// <returns>An instance of <see cref="PinterestFieldsCollection"/> based on <paramref name="fields"/>.</returns>
         public static implicit operator PinterestFieldsCollection(string[] fields) {
             PinterestFieldsCollection collection = new PinterestFieldsCollection();
             foreach (string name in fields) {
@@ -101,9 +103,10 @@ namespace Skybrud.Social.Pinterest.Fields {
         }
 
         /// <summary>
-        /// Initializes a new collection based on a single instance of <code>PinterestField</code>.
+        /// Initializes a new collection based on a single instance of <see cref="PinterestField"/>.
         /// </summary>
         /// <param name="field">The array of fields the collection should be based on.</param>
+        /// <returns>An instance of <see cref="PinterestFieldsCollection"/> based on <paramref name="field"/>.</returns>
         public static implicit operator PinterestFieldsCollection(PinterestField field) {
             return new PinterestFieldsCollection(field);
         }

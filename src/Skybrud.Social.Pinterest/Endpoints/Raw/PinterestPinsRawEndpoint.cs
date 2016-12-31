@@ -5,7 +5,10 @@ using Skybrud.Social.Pinterest.OAuth;
 using Skybrud.Social.Pinterest.Options;
 
 namespace Skybrud.Social.Pinterest.Endpoints.Raw {
-    
+
+    /// <summary>
+    /// Class representing the raw pins endpoint.
+    /// </summary>
     public class PinterestPinsRawEndpoint {
 
         #region Properties
@@ -28,31 +31,31 @@ namespace Skybrud.Social.Pinterest.Endpoints.Raw {
         #region Member methods
 
         /// <summary>
-        /// Gets the pin with the specified <code>id</code>.
+        /// Gets the pin with the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">The ID of the pin to be returned.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         public SocialHttpResponse GetPin(string id) {
             if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
             return GetPin(new PinterestGetPinOptions(id));
         }
 
         /// <summary>
-        /// Gets the pin with the specified <code>id</code>.
+        /// Gets the pin with the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">The ID of the pin to be returned.</param>
         /// <param name="fields">The fields to be returned for the pin.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         public SocialHttpResponse GetPin(string id, PinterestFieldsCollection fields) {
             if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
             return GetPin(new PinterestGetPinOptions(id, fields));
         }
 
         /// <summary>
-        /// Gets the pin matching the specified <code>options</code>.
+        /// Gets the pin matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
+        /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         public SocialHttpResponse GetPin(PinterestGetPinOptions options) {
             if (options == null) throw new ArgumentNullException("options");
             return Client.DoHttpGetRequest("https://api.pinterest.com/v1/pins/" + options.Id, options);

@@ -24,14 +24,14 @@ namespace Skybrud.Social.Pinterest.Options {
         #region Constructors
 
         /// <summary>
-        /// Initializes an instance with default options.
+        /// Initializes a new instance with default options.
         /// </summary>
         public PinterestGetPinOptions() {
             Fields = new PinterestFieldsCollection();
         }
 
         /// <summary>
-        /// Initializes an instance with the specified <code>username</code>.
+        /// Initializes the options based on the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">The ID of the pin to be returned.</param>
         public PinterestGetPinOptions(string id) {
@@ -39,7 +39,7 @@ namespace Skybrud.Social.Pinterest.Options {
         }
 
         /// <summary>
-        /// Initializes an instance with the specified <code>username</code>.
+        /// Initializes the options based on the specified <paramref name="id"/> and <paramref name="fields"/>.
         /// </summary>
         /// <param name="id">The ID of the pin to be returned.</param>
         /// <param name="fields">A collection of the fields that should be returned.</param>

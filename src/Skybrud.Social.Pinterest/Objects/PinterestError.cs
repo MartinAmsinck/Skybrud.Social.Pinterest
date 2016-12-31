@@ -5,6 +5,9 @@ using Skybrud.Essentials.Time;
 
 namespace Skybrud.Social.Pinterest.Objects {
 
+    /// <summary>
+    /// Class representing an error returned by the Pinterest API.
+    /// </summary>
     public class PinterestError : PinterestObject {
 
         #region Properties
@@ -68,6 +71,11 @@ namespace Skybrud.Social.Pinterest.Objects {
 
         #region Static methods
 
+        /// <summary>
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="PinterestError"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>An instance of <see cref="PinterestError"/>.</returns>
         public static PinterestError Parse(JObject obj) {
             return obj == null ? null : new PinterestError(obj);
         }

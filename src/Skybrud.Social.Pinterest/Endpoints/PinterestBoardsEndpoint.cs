@@ -2,6 +2,9 @@
 
 namespace Skybrud.Social.Pinterest.Endpoints {
 
+    /// <summary>
+    /// Class representing the boards endpoint.
+    /// </summary>
     public class PinterestBoardsEndpoint {
 
         #region Properties

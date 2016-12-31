@@ -1,12 +1,12 @@
 ﻿using System;
-using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Pinterest.Objects;
-using Skybrud.Social.Pinterest.Objects.Pins;
+using Skybrud.Social.Pinterest.Objects.Pins.Http;
 
 namespace Skybrud.Social.Pinterest.Responses.Pins {
-    
+
+    /// <summary>
+    /// Class representing a response from the Pinterest API with a list of pins.
+    /// </summary>
     public class PinterestGetPinsResponse : PinterestResponse<PinterestGetPinsResponseBody> {
         
         #region Constructors
@@ -18,10 +18,10 @@ namespace Skybrud.Social.Pinterest.Responses.Pins {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>PinterestGetPinsResponse</code>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="PinterestGetPinsResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>PinterestGetPinsResponse</code>.</returns>
+        /// <returns>An instance of <see cref="PinterestGetPinsResponse"/>.</returns>
         public static PinterestGetPinsResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
@@ -35,38 +35,6 @@ namespace Skybrud.Social.Pinterest.Responses.Pins {
                 Body = ParseJsonObject(response.Body, PinterestGetPinsResponseBody.Parse)
             };
 
-        }
-
-        #endregion
-
-    }
-
-    public class PinterestGetPinsResponseBody : PinterestObject {
-
-        #region Properties
-
-        public PinterestPin[] Data { get; private set; }
-
-        #endregion
-
-        #region Constructors
-
-        private PinterestGetPinsResponseBody(JObject obj) : base(obj) {
-            Data = obj.GetArray("data", PinterestPin.Parse);
-/*
-  "page": {
-    "cursor": null,
-    "next": null
-  }
-*/
-        }
-
-        #endregion
-
-        #region Static methods
-
-        public static PinterestGetPinsResponseBody Parse(JObject obj) {
-            return obj == null ? null : new PinterestGetPinsResponseBody(obj);
         }
 
         #endregion

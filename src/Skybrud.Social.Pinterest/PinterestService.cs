@@ -47,9 +47,10 @@ namespace Skybrud.Social.Pinterest {
         #region Static methods
 
         /// <summary>
-        /// Initialize a new service instance from the specified OAuth client.
+        /// Initialize a new service instance from the specified OAuth <paramref name="client"/>.
         /// </summary>
         /// <param name="client">The OAuth client.</param>
+        /// <returns>An instance of <see cref="PinterestService"/>.</returns>
         public static PinterestService CreateFromOAuthClient(PinterestOAuthClient client) {
 
             // This should never be null
@@ -64,6 +65,7 @@ namespace Skybrud.Social.Pinterest {
         /// Initializes a new service instance from the specific OAuth 2 access token.
         /// </summary>
         /// <param name="accessToken">The access token.</param>
+        /// <returns>An instance of <see cref="PinterestService"/>.</returns>
         public static PinterestService CreateFromAccessToken(string accessToken) {
             return CreateFromOAuthClient(new PinterestOAuthClient {
                 AccessToken = accessToken

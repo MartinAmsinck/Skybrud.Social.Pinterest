@@ -4,7 +4,7 @@ using Skybrud.Social.Pinterest.Objects.Authentication;
 
 namespace Skybrud.Social.Pinterest.Responses.Authentication {
 
-    public class PinterestTokenResponse : PinterestResponse<PinterestTokenResponseBody> {
+    public class PinterestTokenResponse : PinterestResponse<PinterestTokenSummary> {
         
         #region Constructors
 
@@ -29,7 +29,7 @@ namespace Skybrud.Social.Pinterest.Responses.Authentication {
 
             // Initialize the response object
             return new PinterestTokenResponse(response) {
-                Body = ParseJsonObject(response.Body, PinterestTokenResponseBody.Parse)
+                Body = ParseJsonObject(response.Body, PinterestTokenSummary.Parse)
             };
 
         }

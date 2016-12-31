@@ -1,11 +1,10 @@
-﻿using System;
-using Skybrud.Social.Http;
-using Skybrud.Social.Pinterest.Fields;
-using Skybrud.Social.Pinterest.OAuth;
-using Skybrud.Social.Pinterest.Options;
+﻿using Skybrud.Social.Pinterest.OAuth;
 
 namespace Skybrud.Social.Pinterest.Endpoints.Raw {
-    
+
+    /// <summary>
+    /// Class representing the raw boards endpoint.
+    /// </summary>
     public class PinterestBoardsRawEndpoint {
 
         #region Properties

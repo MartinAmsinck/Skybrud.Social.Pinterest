@@ -1,4 +1,6 @@
-﻿namespace Skybrud.Social.Pinterest.Fields {
+﻿using System;
+
+namespace Skybrud.Social.Pinterest.Fields {
     
     /// <summary>
     /// Class representing a field in the Pinterest API.
@@ -17,10 +19,11 @@
         #region Constructors
 
         /// <summary>
-        /// Initializes a new field with the specified <code>name</code>.
+        /// Initializes a new field with the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the field.</param>
         public PinterestField(string name) {
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
             Name = name;
         }
 
@@ -62,19 +65,23 @@
         #region Operators
 
         /// <summary>
-        /// Initializes a new field based on the specified <code>name</code>.
+        /// Initializes a new field based on the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the field.</param>
+        /// <returns>An instance of <see cref="PinterestField"/>.</returns>
         public static implicit operator PinterestField(string name) {
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
             return new PinterestField(name);
         }
 
         /// <summary>
-        /// Adding two instances of <code>PinterestField</code> will result in a
-        /// <code>PinterestFieldsCollection</code> containing both fields.
+        /// Adding two instances of <see cref="PinterestField"/> will result in a
+        /// <see cref="PinterestFieldsCollection"/> containing both fields.
         /// </summary>
         /// <param name="left">The left field.</param>
         /// <param name="right">The right field.</param>
+        /// <returns>An instance of <see cref="PinterestFieldsCollection"/> containing both <paramref name="left"/> and
+        /// <paramref name="right"/>.</returns>
         public static PinterestFieldsCollection operator +(PinterestField left, PinterestField right) {
             return new PinterestFieldsCollection(left, right);
         }

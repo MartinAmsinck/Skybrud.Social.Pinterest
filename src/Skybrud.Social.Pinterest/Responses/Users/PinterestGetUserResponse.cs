@@ -1,12 +1,12 @@
 ﻿using System;
-using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Social.Pinterest.Objects;
-using Skybrud.Social.Pinterest.Objects.Users;
+using Skybrud.Social.Pinterest.Objects.Users.Http;
 
 namespace Skybrud.Social.Pinterest.Responses.Users {
 
+    /// <summary>
+    /// Class representing a response from the Pinterest API with information about a single user.
+    /// </summary>
     public class PinterestGetUserResponse : PinterestResponse<PinterestGetUserResponseBody> {
         
         #region Constructors
@@ -18,10 +18,10 @@ namespace Skybrud.Social.Pinterest.Responses.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>PinterestGetUserResponse</code>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="PinterestGetUserResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>PinterestGetUserResponse</code>.</returns>
+        /// <returns>An instance of <see cref="PinterestGetUserResponse"/>.</returns>
         public static PinterestGetUserResponse ParseResponse(SocialHttpResponse response) {
 
             // Some input validation
@@ -35,32 +35,6 @@ namespace Skybrud.Social.Pinterest.Responses.Users {
                 Body = ParseJsonObject(response.Body, PinterestGetUserResponseBody.Parse)
             };
 
-        }
-
-        #endregion
-
-    }
-
-    public class PinterestGetUserResponseBody : PinterestObject {
-
-        #region Properties
-
-        public PinterestUser Data { get; private set; }
-
-        #endregion
-
-        #region Constructors
-
-        private PinterestGetUserResponseBody(JObject obj) : base(obj) {
-            Data = obj.GetObject("data", PinterestUser.Parse);
-        }
-
-        #endregion
-
-        #region Static methods
-
-        public static PinterestGetUserResponseBody Parse(JObject obj) {
-            return obj == null ? null : new PinterestGetUserResponseBody(obj);
         }
 
         #endregion

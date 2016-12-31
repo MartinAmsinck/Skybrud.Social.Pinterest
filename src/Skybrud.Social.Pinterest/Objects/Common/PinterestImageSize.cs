@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Pinterest.Objects.Users {
+namespace Skybrud.Social.Pinterest.Objects.Common {
     
-    public class PinterestUserImageSize : PinterestObject {
+    public class PinterestImageSize : PinterestObject {
 
         #region Properties
         
@@ -31,7 +31,7 @@ namespace Skybrud.Social.Pinterest.Objects.Users {
 
         #region Constructors
 
-        private PinterestUserImageSize(JObject obj) : base(obj) {
+        private PinterestImageSize(JObject obj) : base(obj) {
 
             JProperty property = obj.Parent as JProperty;
             Alias = property == null ? null : property.Name;
@@ -47,12 +47,12 @@ namespace Skybrud.Social.Pinterest.Objects.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="PinterestUserImageSize"/>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="PinterestImageSize"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
-        /// <returns>An instance of <see cref="PinterestUserImageSize"/>.</returns>
-        public static PinterestUserImageSize Parse(JObject obj) {
-            return obj == null ? null : new PinterestUserImageSize(obj);
+        /// <returns>An instance of <see cref="PinterestImageSize"/>.</returns>
+        public static PinterestImageSize Parse(JObject obj) {
+            return obj == null ? null : new PinterestImageSize(obj);
         }
 
         #endregion

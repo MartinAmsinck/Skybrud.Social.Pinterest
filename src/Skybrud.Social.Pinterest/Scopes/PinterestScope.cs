@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Skybrud.Social.Pinterest.Scopes {
 
@@ -30,10 +31,11 @@ namespace Skybrud.Social.Pinterest.Scopes {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new scope based on the specified <code>name</code> a.
+        /// Initializes a new scope based on the specified <paramref name="name"/> a.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         public PinterestScope(string name) {
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
             Name = name;
         }
 
@@ -54,17 +56,19 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         internal static PinterestScope RegisterScope(string name) {
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
             PinterestScope scope = new PinterestScope(name);
             Scopes.Add(scope.Name, scope);
             return scope;
         }
 
         /// <summary>
-        /// Attempts to get a scope with the specified <code>name</code>.
+        /// Attempts to get a scope with the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Gets a scope matching the specified <code>name</code>, or <code>null</code> if not found-</returns>
+        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <code>null</code> if not found.</returns>
         public static PinterestScope GetScope(string name) {
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
             PinterestScope scope;
             return Scopes.TryGetValue(name, out scope) ? scope : null;
         }
@@ -73,9 +77,10 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// Gets whether the scope is a known scope.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Returns <code>true</code> if the specified <code>name</code> matches a known
-        /// scope, otherwise <code>false</code>.</returns>
+        /// <returns>Returns <code>true</code> if the specified <paramref name="name"/> matches a known scope,
+        /// otherwise <code>false</code>.</returns>
         public static bool ScopeExists(string name) {
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
             return Scopes.ContainsKey(name);
         }
 
@@ -84,11 +89,13 @@ namespace Skybrud.Social.Pinterest.Scopes {
         #region Operators
 
         /// <summary>
-        /// Adding two instances of <code>PinterestScope</code> will result in a
-        /// <code>PinterestScopeCollection</code> containing both scopes.
+        /// Adding two instances of <see cref="PinterestScope"/> will result in a
+        /// <see cref="PinterestScopeCollection"/> containing both scopes.
         /// </summary>
         /// <param name="left">The left scope.</param>
         /// <param name="right">The right scope.</param>
+        /// <returns>An instance of <see cref="PinterestScopeCollection"/> based on <paramref name="left"/> and
+        /// <paramref name="right"/>.</returns>
         public static PinterestScopeCollection operator +(PinterestScope left, PinterestScope right) {
             return new PinterestScopeCollection(left, right);
         }
