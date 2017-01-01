@@ -154,6 +154,9 @@ namespace Skybrud.Social.Pinterest.OAuth {
         
         protected override void PrepareHttpRequest(SocialHttpRequest request) {
 
+            // Append the domain to the URL (if not already specified)
+            if (request.Url.StartsWith("/")) request.Url = "https://api.pinterest.com" + request.Url; 
+
             // Add an authorization header with the access token
             if (request.QueryString != null && !request.QueryString.ContainsKey("access_token") && !String.IsNullOrWhiteSpace(AccessToken)) {
 

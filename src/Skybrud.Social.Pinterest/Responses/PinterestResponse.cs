@@ -42,6 +42,7 @@ namespace Skybrud.Social.Pinterest.Responses {
 
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
+            if (response.StatusCode == HttpStatusCode.Created) return;
 
             // Parse the JSON response
             PinterestError error = ParseJsonObject(response.Body, PinterestError.Parse);
