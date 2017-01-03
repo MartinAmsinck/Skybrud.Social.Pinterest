@@ -136,7 +136,7 @@ namespace Skybrud.Social.Pinterest.Endpoints.Raw {
             if (options == null) throw new ArgumentNullException("options");
             if (String.IsNullOrEmpty(options.Board)) throw new PropertyNotSetException("options.Board");
             if (String.IsNullOrEmpty(options.Name)) throw new PropertyNotSetException("options.Name");
-            return Client.DoHttpRequest(SocialHttpMethod.Patch, "/v1/boards/" + options.Board, options);
+            return Client.DoHttpPatchRequest("/v1/boards/" + options.Board, options);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Skybrud.Social.Pinterest.Endpoints.Raw {
         /// <returns>Returns an instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
         public SocialHttpResponse DeleteBoard(string board) {
             if (String.IsNullOrEmpty(board)) throw new ArgumentNullException("board");
-            return Client.DoHttpRequest(SocialHttpMethod.Delete, "/v1/boards/" + board + "/");
+            return Client.DoHttpDeleteRequest("/v1/boards/" + board + "/");
         }
 
         #endregion
