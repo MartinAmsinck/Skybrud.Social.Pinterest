@@ -1,7 +1,20 @@
 Skybrud.Social.Pinterest
 ========================
 
-As this is an experimental project, it won't be released on NuGet or similar for now. You can however [**grab a build from Dropbox**](https://www.dropbox.com/sh/ubak1qionvji8mf/AADqHLr0GuvlLhPGACaA7hOMa/Skybrud.Social.Pinterest%20-%20Build%200.0.2.10%20(2015-10-16)?dl=0) or download the repository and build the `Skybrud.Social.Pinterest` project.
+### Installation
+
+To install the Skybrud.Social.Pinterest, simply pick one of the three methods below:
+
+1. [**NuGet Package**][NuGetPackage]  
+   Install this NuGet package in your Visual Studio project. Makes updating easy.
+2. [**ZIP file**][GitHubRelease]  
+   Grab a ZIP file of the latest release; unzip and move the DLL files to the bin directory of your project.
+3. [**Builds**][DropboxFolder]  
+   I may occasional upload a build to Dropbox. These are builds in between releases, and are not tested at the same level as releases. As above, move `Skybrud.Social.Core.dll` to the bin directory of your project.
+
+
+
+
 
 ## Usage
 
@@ -35,3 +48,13 @@ Authentication requires that you specify the client ID, client secret and redire
 ## Documentation
 
 Although still a bit limited, further documentation can be found at the [Skybrud.Social website](http://social.skybrud.dk/pinterest/).
+
+
+
+
+
+[NuGetPackage]: https://www.nuget.org/packages/Skybrud.Social.Pinterest
+[GitHubRelease]: https://github.com/abjerner/Skybrud.Social.Pinterest/releases/latest
+[DropboxFolder]: https://www.dropbox.com/sh/ubak1qionvji8mf/AACq5X5b2Ic6MPPZznrzfsl2a?dl=0
+[Changelog]: https://github.com/abjerner/Skybrud.Social.Pinterest/blob/master/CHANGELOG.md
+[Issues]: https://github.com/abjerner/Skybrud.Social.Pinterest/issues
