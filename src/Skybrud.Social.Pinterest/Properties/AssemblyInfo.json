@@ -1,10 +1,10 @@
 {
   "title": "Skybrud.Social.Pinterest",
   "description": "Authentication and service implementation for the Pinterest API.",
-  "company": "Skybrud.dk",
+  "company": "Skybrud.dk a/s",
   "product": "Skybrud.Social",
-  "copyright": "Copyright © 2017",
+  "copyright": "Copyright © 2018",
   "version": "1.0.0.0",
-  "informationalVersion": "1.0.0-beta001",
-  "fileVersion": "0.0.449.1"
+  "informationalVersion": "1.0.0-beta002",
+  "fileVersion": "0.0.921.9"
 }
