@@ -5,10 +5,13 @@ using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.Pinterest.Fields;
 
 namespace Skybrud.Social.Pinterest.Options.Boards {
-    
+
+    /// <summary>
+    /// Class with options for a request to the Pinterest API for editing an existing Pinterest board.
+    /// </summary>
     public class PinterestEditBoardOptions : IHttpGetOptions {
 
-        #region Constructors
+        #region Properties
 
         /// <summary>
         /// Gets or sets the identifier of the board to be edited.
@@ -70,7 +73,13 @@ namespace Skybrud.Social.Pinterest.Options.Boards {
         }
 
         #endregion
+        
+        #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
 
             // Since the name is mandatory, we throw an exception if no specified
@@ -81,14 +90,16 @@ namespace Skybrud.Social.Pinterest.Options.Boards {
 
             // Construct the query string
             SocialHttpQueryString query = new SocialHttpQueryString();
-            query.Add("name", Name);
+            query.Set("name", Name);
             if (!String.IsNullOrWhiteSpace(Description)) query.Add("description", Description);
             if (!String.IsNullOrWhiteSpace(fields)) query.Set("fields", fields);
 
             return query;
 
         }
-    
+
+        #endregion
+
     }
 
 }

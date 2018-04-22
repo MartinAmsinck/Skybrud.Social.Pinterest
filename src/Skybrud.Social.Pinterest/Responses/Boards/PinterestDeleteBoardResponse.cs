@@ -1,7 +1,11 @@
-﻿using Skybrud.Social.Http;
+﻿using System;
+using Skybrud.Social.Http;
 
 namespace Skybrud.Social.Pinterest.Responses.Boards {
-    
+
+    /// <summary>
+    /// Class representing the response of a request to the Pinterest API for deleting an existing board.
+    /// </summary>
     public class PinterestDeleteBoardResponse : PinterestResponse {
         
         #region Constructors
@@ -23,7 +27,8 @@ namespace Skybrud.Social.Pinterest.Responses.Boards {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="PinterestDeleteBoardResponse"/>.</returns>
         public static PinterestDeleteBoardResponse ParseResponse(SocialHttpResponse response) {
-            return response == null ? null : new PinterestDeleteBoardResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new PinterestDeleteBoardResponse(response);
         }
 
         #endregion

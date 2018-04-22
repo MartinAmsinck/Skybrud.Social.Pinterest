@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using Skybrud.Social.Http;
 using Skybrud.Social.Pinterest.Exceptions;
-using Skybrud.Social.Pinterest.Objects;
-using Skybrud.Social.Pinterest.Objects.Common;
+using Skybrud.Social.Pinterest.Models;
+using Skybrud.Social.Pinterest.Models.Common;
 
 namespace Skybrud.Social.Pinterest.Responses {
 
@@ -16,7 +16,7 @@ namespace Skybrud.Social.Pinterest.Responses {
         /// <summary>
         /// Gets information about rate limiting.
         /// </summary>
-        public PinterestRateLimiting RateLimiting { get; private set; }
+        public PinterestRateLimiting RateLimiting { get; }
 
         #endregion
 

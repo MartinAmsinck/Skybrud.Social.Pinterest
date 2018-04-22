@@ -1,13 +1,12 @@
-﻿using System;
-using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Fields;
+using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Options;
 using Skybrud.Social.Pinterest.Responses.Pins;
 
 namespace Skybrud.Social.Pinterest.Endpoints {
 
     /// <summary>
-    /// Class representing the pins endpoint.
+    /// Class representing the raw pins endpoint.
     /// </summary>
     public class PinterestPinsEndpoint {
 
@@ -16,14 +15,12 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// <summary>
         /// Gets a reference to the Pinterest service.
         /// </summary>
-        public PinterestService Service { get; private set; }
+        public PinterestService Service { get; }
 
         /// <summary>
-        /// A reference to the raw endpoint.
+        /// Gets a reference to the raw endpoint.
         /// </summary>
-        public PinterestPinsRawEndpoint Raw {
-            get { return Service.Client.Pins; }
-        }
+        public PinterestPinsRawEndpoint Raw => Service.Client.Pins;
 
         #endregion
 
@@ -41,9 +38,8 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Gets the pin with the specified <paramref name="id"/>.
         /// </summary>
         /// <param name="id">The ID of the pin to be returned.</param>
-        /// <returns>Returns an instance of <see cref="PinterestGetPinResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestGetPinResponse"/> representing the response.</returns>
         public PinterestGetPinResponse GetPin(string id) {
-            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
             return PinterestGetPinResponse.ParseResponse(Raw.GetPin(id));
         }
 
@@ -52,36 +48,47 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// </summary>
         /// <param name="id">The ID of the pin to be returned.</param>
         /// <param name="fields">The fields to be returned for the pin.</param>
-        /// <returns>Returns an instance of <see cref="PinterestGetPinResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestGetPinResponse"/> representing the response.</returns>
         public PinterestGetPinResponse GetPin(string id, PinterestFieldsCollection fields) {
-            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
             return PinterestGetPinResponse.ParseResponse(Raw.GetPin(id, fields));
         }
 
         /// <summary>
         /// Gets the pin matching the specified <paramref name="options"/>.
         /// </summary>
-        /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="PinterestGetPinResponse"/> representing the response.</returns>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns>An instance of <see cref="PinterestGetPinResponse"/> representing the response.</returns>
         public PinterestGetPinResponse GetPin(PinterestGetPinOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
             return PinterestGetPinResponse.ParseResponse(Raw.GetPin(options));
         }
 
+        /// <summary>
+        /// Gets a collection of pins of the Pinterest board matching the specified <paramref name="username"/> and <paramref name="board"/>.
+        /// </summary>
+        /// <param name="username">The username of the user owning the board.</param>
+        /// <param name="board">The alias of the board.</param>
+        /// <returns>An instance of <see cref="PinterestGetPinsResponse"/> representing the response.</returns>
         public PinterestGetPinsResponse GetPins(string username, string board) {
-            if (String.IsNullOrWhiteSpace(username)) throw new ArgumentNullException("username");
-            if (String.IsNullOrWhiteSpace(board)) throw new ArgumentNullException("board");
             return PinterestGetPinsResponse.ParseResponse(Raw.GetPins(username, board));
         }
 
+        /// <summary>
+        /// Gets a collection of pins of the Pinterest board matching the specified <paramref name="username"/> and <paramref name="board"/>.
+        /// </summary>
+        /// <param name="username">The username of the user owning the board.</param>
+        /// <param name="board">The alias of the board.</param>
+        /// <param name="fields">The fields to be returned for the pins.</param>
+        /// <returns>An instance of <see cref="PinterestGetPinsResponse"/> representing the response.</returns>
         public PinterestGetPinsResponse GetPins(string username, string board, PinterestFieldsCollection fields) {
-            if (String.IsNullOrWhiteSpace(username)) throw new ArgumentNullException("username");
-            if (String.IsNullOrWhiteSpace(board)) throw new ArgumentNullException("board");
             return PinterestGetPinsResponse.ParseResponse(Raw.GetPins(username, board, fields));
         }
 
+        /// <summary>
+        /// Gets a collection of pins of the Pinterest board matching the specified <paramref name="options"/>.
+        /// </summary>
+        /// <param name="options">The options for the request to the API.</param>
+        /// <returns></returns>
         public PinterestGetPinsResponse GetPins(PinterestGetPinsOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
             return PinterestGetPinsResponse.ParseResponse(Raw.GetPins(options));
         }
 

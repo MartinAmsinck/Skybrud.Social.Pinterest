@@ -6,7 +6,7 @@
     public enum PinterestAccountType {
 
         /// <summary>
-        /// Indicates that the <code>account_type</code> fields wasn't returned by the Pinterest API.
+        /// Indicates that the <c>account_type</c> fields wasn't returned by the Pinterest API.
         /// </summary>
         NotSpecified,
 

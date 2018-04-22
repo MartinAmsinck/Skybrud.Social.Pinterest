@@ -1,8 +1,12 @@
-﻿using Skybrud.Social.Http;
-using Skybrud.Social.Pinterest.Objects.Boards.Http;
+﻿using System;
+using Skybrud.Social.Http;
+using Skybrud.Social.Pinterest.Models.Boards.Http;
 
 namespace Skybrud.Social.Pinterest.Responses.Boards {
-    
+
+    /// <summary>
+    /// Class representing the response of a request to the Pinterest API for getting information about a single Pinterest board.
+    /// </summary>
     public class PinterestGetBoardResponse : PinterestResponse<PinterestGetBoardResponseBody> {
         
         #region Constructors
@@ -27,7 +31,8 @@ namespace Skybrud.Social.Pinterest.Responses.Boards {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="PinterestGetBoardResponse"/>.</returns>
         public static PinterestGetBoardResponse ParseResponse(SocialHttpResponse response) {
-            return response == null ? null : new PinterestGetBoardResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new PinterestGetBoardResponse(response);
         }
 
         #endregion

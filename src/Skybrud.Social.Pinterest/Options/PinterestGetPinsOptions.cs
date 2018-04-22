@@ -5,6 +5,9 @@ using Skybrud.Social.Pinterest.Fields;
 
 namespace Skybrud.Social.Pinterest.Options {
 
+    /// <summary>
+    /// Class with options for a request to the Pinterest API for getting a collection of Pinterest pins.
+    /// </summary>
     public class PinterestGetPinsOptions : IHttpGetOptions {
 
         #region Properties
@@ -62,6 +65,10 @@ namespace Skybrud.Social.Pinterest.Options {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
 
             // Convert the collection of fields to a string

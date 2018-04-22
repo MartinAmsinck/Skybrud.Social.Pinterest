@@ -24,7 +24,7 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// <summary>
         /// Gets the name of the scope.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         public PinterestScope(string name) {
-            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             Name = name;
         }
 
@@ -43,6 +43,10 @@ namespace Skybrud.Social.Pinterest.Scopes {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets a string representation of the scope.
+        /// </summary>
+        /// <returns>An instance of <see cref="System.String"/> representing the scope.</returns>
         public override string ToString() {
             return Name;
         }
@@ -56,7 +60,7 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         internal static PinterestScope RegisterScope(string name) {
-            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             PinterestScope scope = new PinterestScope(name);
             Scopes.Add(scope.Name, scope);
             return scope;
@@ -66,9 +70,9 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// Attempts to get a scope with the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <code>null</code> if not found.</returns>
+        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <c>null</c> if not found.</returns>
         public static PinterestScope GetScope(string name) {
-            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             PinterestScope scope;
             return Scopes.TryGetValue(name, out scope) ? scope : null;
         }
@@ -80,7 +84,7 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// <returns>Returns <code>true</code> if the specified <paramref name="name"/> matches a known scope,
         /// otherwise <code>false</code>.</returns>
         public static bool ScopeExists(string name) {
-            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             return Scopes.ContainsKey(name);
         }
 

@@ -14,22 +14,22 @@ namespace Skybrud.Social.Pinterest {
         /// <summary>
         /// Gets a reference to the internal OAuth client.
         /// </summary>
-        public PinterestOAuthClient Client { get; private set; }
+        public PinterestOAuthClient Client { get; }
 
         /// <summary>
         /// Gets a reference to the boards endpoint.
         /// </summary>
-        public PinterestBoardsEndpoint Boards { get; private set; }
+        public PinterestBoardsEndpoint Boards { get; }
 
         /// <summary>
         /// Gets a reference to the pins endpoint.
         /// </summary>
-        public PinterestPinsEndpoint Pins { get; private set; }
+        public PinterestPinsEndpoint Pins { get; }
 
         /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
-        public PinterestUsersEndpoint Users { get; private set; }
+        public PinterestUsersEndpoint Users { get; }
 
         #endregion
 
@@ -54,7 +54,7 @@ namespace Skybrud.Social.Pinterest {
         public static PinterestService CreateFromOAuthClient(PinterestOAuthClient client) {
 
             // This should never be null
-            if (client == null) throw new ArgumentNullException("client");
+            if (client == null) throw new ArgumentNullException(nameof(client));
 
             // Initialize the service
             return new PinterestService(client);

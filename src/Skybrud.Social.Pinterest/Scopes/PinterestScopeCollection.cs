@@ -20,9 +20,7 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// <summary>
         /// Gets an array of all the scopes added to the collection.
         /// </summary>
-        public PinterestScope[] Items {
-            get { return _list.ToArray(); }
-        }
+        public PinterestScope[] Items => _list.ToArray();
 
         #endregion
 
@@ -45,7 +43,7 @@ namespace Skybrud.Social.Pinterest.Scopes {
         /// </summary>
         /// <param name="scope">The scope to be added.</param>
         public void Add(PinterestScope scope) {
-            if (scope == null) throw new ArgumentNullException("scope");
+            if (scope == null) throw new ArgumentNullException(nameof(scope));
             _list.Add(scope);
         }
 

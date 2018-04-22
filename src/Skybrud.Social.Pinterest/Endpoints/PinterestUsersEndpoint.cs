@@ -1,13 +1,12 @@
-﻿using System;
-using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Fields;
+using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Options;
 using Skybrud.Social.Pinterest.Responses.Users;
 
 namespace Skybrud.Social.Pinterest.Endpoints {
 
     /// <summary>
-    /// Class representing the users endpoint.
+    /// Class representing the raw users endpoint.
     /// </summary>
     public class PinterestUsersEndpoint {
 
@@ -16,14 +15,12 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// <summary>
         /// Gets a reference to the Pinterest service.
         /// </summary>
-        public PinterestService Service { get; private set; }
+        public PinterestService Service { get; }
 
         /// <summary>
-        /// A reference to the raw endpoint.
+        /// Gets a reference to the raw endpoint.
         /// </summary>
-        public PinterestUsersRawEndpoint Raw {
-            get { return Service.Client.Users; }
-        }
+        public PinterestUsersRawEndpoint Raw => Service.Client.Users;
 
         #endregion
 
@@ -41,9 +38,8 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Gets information about the user with the specified <paramref name="identifier"/>.
         /// </summary>
         /// <param name="identifier">The identifier of the user.</param>
-        /// <returns>Returns an instance of <code>PinterestGetUserResponse</code> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestGetUserResponse"/> representing the response.</returns>
         public PinterestGetUserResponse GetUser(string identifier) {
-            if (String.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException("identifier");
             return PinterestGetUserResponse.ParseResponse(Raw.GetUser(identifier));
         }
 
@@ -52,9 +48,8 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// </summary>
         /// <param name="identifier">The identifier of the user.</param>
         /// <param name="fields">The fields that should be returned.</param>
-        /// <returns>Returns an instance of <code>PinterestGetUserResponse</code> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestGetUserResponse"/> representing the response.</returns>
         public PinterestGetUserResponse GetUser(string identifier, PinterestFieldsCollection fields) {
-            if (String.IsNullOrWhiteSpace(identifier)) throw new ArgumentNullException("identifier");
             return PinterestGetUserResponse.ParseResponse(Raw.GetUser(identifier, fields));
         }
 
@@ -62,9 +57,8 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Gets information about the user matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestGetUserResponse"/> representing the response.</returns>
         public PinterestGetUserResponse GetUser(PinterestGetUserOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
             return PinterestGetUserResponse.ParseResponse(Raw.GetUser(options));
         }
 

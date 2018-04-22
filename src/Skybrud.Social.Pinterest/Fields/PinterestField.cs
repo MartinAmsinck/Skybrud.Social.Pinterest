@@ -12,7 +12,7 @@ namespace Skybrud.Social.Pinterest.Fields {
         /// <summary>
         /// Gets the name of the field.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Skybrud.Social.Pinterest.Fields {
         /// </summary>
         /// <param name="name">The name of the field.</param>
         public PinterestField(string name) {
-            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             Name = name;
         }
 
@@ -70,7 +70,7 @@ namespace Skybrud.Social.Pinterest.Fields {
         /// <param name="name">The name of the field.</param>
         /// <returns>An instance of <see cref="PinterestField"/>.</returns>
         public static implicit operator PinterestField(string name) {
-            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException("name");
+            if (String.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             return new PinterestField(name);
         }
 

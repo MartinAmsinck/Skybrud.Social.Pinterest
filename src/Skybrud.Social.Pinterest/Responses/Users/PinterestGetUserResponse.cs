@@ -1,6 +1,6 @@
 ﻿using System;
 using Skybrud.Social.Http;
-using Skybrud.Social.Pinterest.Objects.Users.Http;
+using Skybrud.Social.Pinterest.Models.Users.Http;
 
 namespace Skybrud.Social.Pinterest.Responses.Users {
 
@@ -11,7 +11,15 @@ namespace Skybrud.Social.Pinterest.Responses.Users {
         
         #region Constructors
 
-        private PinterestGetUserResponse(SocialHttpResponse response) : base(response) { }
+        private PinterestGetUserResponse(SocialHttpResponse response) : base(response) {
+            
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonObject(response.Body, PinterestGetUserResponseBody.Parse);
+
+        }
 
         #endregion
 
@@ -23,18 +31,8 @@ namespace Skybrud.Social.Pinterest.Responses.Users {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="PinterestGetUserResponse"/>.</returns>
         public static PinterestGetUserResponse ParseResponse(SocialHttpResponse response) {
-
-            // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
-            
-            // Validate the response
-            ValidateResponse(response);
-
-            // Initialize the response object
-            return new PinterestGetUserResponse(response) {
-                Body = ParseJsonObject(response.Body, PinterestGetUserResponseBody.Parse)
-            };
-
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new PinterestGetUserResponse(response);
         }
 
         #endregion

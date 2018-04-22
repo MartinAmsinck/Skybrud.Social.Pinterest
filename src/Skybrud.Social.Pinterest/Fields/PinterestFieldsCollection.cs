@@ -20,16 +20,14 @@ namespace Skybrud.Social.Pinterest.Fields {
         /// <summary>
         /// Gets an array of all the fields added to the collection.
         /// </summary>
-        public PinterestField[] Fields {
-            get { return _fields.ToArray(); }
-        }
+        public PinterestField[] Fields => _fields.ToArray();
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new collection based on the specified <code>array</code> of fields.
+        /// Initializes a new collection based on the specified <paramref name="array"/> of fields.
         /// </summary>
         /// <param name="array">Array of fields.</param>
         public PinterestFieldsCollection(params PinterestField[] array) {
@@ -41,7 +39,7 @@ namespace Skybrud.Social.Pinterest.Fields {
         #region Member methods
 
         /// <summary>
-        /// Adds the specified <code>field</code> to the collection.
+        /// Adds the specified <paramref name="field"/> to the collection.
         /// </summary>
         /// <param name="field">The field to be added.</param>
         public void Add(PinterestField field) {
@@ -51,7 +49,7 @@ namespace Skybrud.Social.Pinterest.Fields {
         /// <summary>
         /// Returns an array of fields based on the collection.
         /// </summary>
-        /// <returns>Array of fields contained in the collection.</returns>
+        /// <returns>An array of fields contained in the collection.</returns>
         public PinterestField[] ToArray() {
             return _fields.ToArray();
         }
@@ -112,10 +110,10 @@ namespace Skybrud.Social.Pinterest.Fields {
         }
 
         /// <summary>
-        /// Adds support for adding a <code>field</code> to the <code>collection</code> using the plus operator.
+        /// Adds support for adding a <paramref name="field"/> to the <paramref name="collection"/> using the plus operator.
         /// </summary>
-        /// <param name="collection">The collection to which <code>field</code> will be added.</param>
-        /// <param name="field">The field to be added to the <code>collection</code>.</param>
+        /// <param name="collection">The collection to which <paramref name="field"/> will be added.</param>
+        /// <param name="field">The field to be added to the <paramref name="collection"/>.</param>
         public static PinterestFieldsCollection operator +(PinterestFieldsCollection collection, PinterestField field) {
             collection.Add(field);
             return collection;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using Skybrud.Social.Http;
 using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Responses.Authentication;
@@ -7,6 +6,9 @@ using Skybrud.Social.Pinterest.Scopes;
 
 namespace Skybrud.Social.Pinterest.OAuth {
     
+    /// <summary>
+    /// Class for handling the raw communication with the Pinterest API as well as any OAuth 2.0 authentication requires to access the API.
+    /// </summary>
     public class PinterestOAuthClient : SocialHttpClient {
 
         #region Properties
@@ -40,17 +42,17 @@ namespace Skybrud.Social.Pinterest.OAuth {
         /// <summary>
         /// Gets a reference to the raw boards endpoint.
         /// </summary>
-        public PinterestBoardsRawEndpoint Boards { get; private set; }
+        public PinterestBoardsRawEndpoint Boards { get; }
 
         /// <summary>
         /// Gets a reference to the raw pins endpoint.
         /// </summary>
-        public PinterestPinsRawEndpoint Pins { get; private set; }
+        public PinterestPinsRawEndpoint Pins { get; }
 
         /// <summary>
         /// Gets a reference to the raw users endpoint.
         /// </summary>
-        public PinterestUsersRawEndpoint Users { get; private set; }
+        public PinterestUsersRawEndpoint Users { get; }
 
         #endregion
 
@@ -59,7 +61,7 @@ namespace Skybrud.Social.Pinterest.OAuth {
         #region Constructors
 
         /// <summary>
-        /// Initializes an OAuth client with empty information.
+        /// Initializes an OAuth client with default options.
         /// </summary>
         public PinterestOAuthClient() {
             Boards = new PinterestBoardsRawEndpoint(this);
@@ -108,7 +110,7 @@ namespace Skybrud.Social.Pinterest.OAuth {
         /// </summary>
         /// <param name="state">The state to send to the Pinterest OAuth login page.</param>
         /// <param name="scope">The scope of the application.</param>
-        /// <returns>Returns an authorization URL based on <paramref name="state"/> and <paramref name="scope"/>.</returns>
+        /// <returns>An authorization URL based on <paramref name="state"/> and <paramref name="scope"/>.</returns>
         public string GetAuthorizationUrl(string state, PinterestScopeCollection scope) {
             return GetAuthorizationUrl(state, scope.ToString());
         }
@@ -118,7 +120,7 @@ namespace Skybrud.Social.Pinterest.OAuth {
         /// </summary>
         /// <param name="state">The state to send to the Pinterest OAuth login page.</param>
         /// <param name="scope">The scope of the application.</param>
-        /// <returns>Returns an authorization URL based on <paramref name="state"/> and <paramref name="scope"/>.</returns>
+        /// <returns>An authorization URL based on <paramref name="state"/> and <paramref name="scope"/>.</returns>
         public string GetAuthorizationUrl(string state, params string[] scope) {
             return String.Format(
                 "https://api.pinterest.com/oauth/?client_id={0}&scope={1}&response_type=code&redirect_uri={2}&state={3}",
@@ -133,7 +135,7 @@ namespace Skybrud.Social.Pinterest.OAuth {
         /// Exchanges the specified <paramref name="authCode"/> for a refresh token and an access token.
         /// </summary>
         /// <param name="authCode">The authorization code received from the Pinterest OAuth dialog.</param>
-        /// <returns>Returns an access token based on the specified <paramref name="authCode"/>.</returns>
+        /// <returns>An access token based on the specified <paramref name="authCode"/>.</returns>
         public PinterestTokenResponse GetAccessTokenFromAuthCode(string authCode) {
 
             // Initialize the POST data
@@ -151,7 +153,11 @@ namespace Skybrud.Social.Pinterest.OAuth {
             return PinterestTokenResponse.ParseResponse(response);
 
         }
-        
+
+        /// <summary>
+        /// Virtual method that can be used for configuring a request.
+        /// </summary>
+        /// <param name="request">The instance of <see cref="SocialHttpRequest"/> representing the request.</param>
         protected override void PrepareHttpRequest(SocialHttpRequest request) {
 
             // Append the domain to the URL (if not already specified)

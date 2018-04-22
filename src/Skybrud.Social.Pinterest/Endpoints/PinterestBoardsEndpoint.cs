@@ -1,13 +1,12 @@
-﻿using System;
-using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Fields;
+using Skybrud.Social.Pinterest.Endpoints.Raw;
 using Skybrud.Social.Pinterest.Options.Boards;
 using Skybrud.Social.Pinterest.Responses.Boards;
 
 namespace Skybrud.Social.Pinterest.Endpoints {
 
     /// <summary>
-    /// Class representing the boards endpoint.
+    /// Class representing the raw boards endpoint.
     /// </summary>
     public class PinterestBoardsEndpoint {
 
@@ -16,14 +15,12 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// <summary>
         /// Gets a reference to the Pinterest service.
         /// </summary>
-        public PinterestService Service { get; private set; }
+        public PinterestService Service { get; }
 
         /// <summary>
-        /// A reference to the raw endpoint.
+        /// Gets a reference to the raw endpoint.
         /// </summary>
-        public PinterestBoardsRawEndpoint Raw {
-            get { return Service.Client.Boards; }
-        }
+        public PinterestBoardsRawEndpoint Raw => Service.Client.Boards;
 
         #endregion
 
@@ -42,7 +39,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// </summary>
         /// <param name="name">The name of the board to be created.</param>
         /// <param name="description">The description of the board to be created.</param>
-        /// <returns>Returns an instance of <see cref="PinterestCreateBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestCreateBoardResponse"/> representing the response.</returns>
         public PinterestCreateBoardResponse CreateBoard(string name, string description) {
             return PinterestCreateBoardResponse.ParseResponse(Raw.CreateBoard(name, description));
         }
@@ -53,7 +50,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// <param name="name">The name of the board to be created.</param>
         /// <param name="description">The description of the board to be created.</param>
         /// <param name="fields">The fields to be returned for the board.</param>
-        /// <returns>Returns an instance of <see cref="PinterestCreateBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestCreateBoardResponse"/> representing the response.</returns>
         public PinterestCreateBoardResponse CreateBoard(string name, string description, PinterestFieldsCollection fields) {
             return PinterestCreateBoardResponse.ParseResponse(Raw.CreateBoard(name, description, fields));
         }
@@ -62,7 +59,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Creates a new board with the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="PinterestCreateBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestCreateBoardResponse"/> representing the response.</returns>
         public PinterestCreateBoardResponse CreateBoard(PinterestCreateBoardOptions options) {
             return PinterestCreateBoardResponse.ParseResponse(Raw.CreateBoard(options));
         }
@@ -71,8 +68,8 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Gets the board with the specified <paramref name="board"/> identifier.
         /// </summary>
         /// <param name="board">The identifier of the board to be retrieved. Can be either the ID of the board or the
-        /// part of the URL like <code>&lt;username&gt;/&lt;board_name&gt;</code></param>
-        /// <returns>Returns an instance of <see cref="PinterestGetBoardResponse"/> representing the response.</returns>
+        /// part of the URL like <c>&lt;username&gt;/&lt;board_name&gt;</c></param>
+        /// <returns>An instance of <see cref="PinterestGetBoardResponse"/> representing the response.</returns>
         public PinterestGetBoardResponse GetBoard(string board) {
             return PinterestGetBoardResponse.ParseResponse(Raw.GetBoard(board));
         }
@@ -81,9 +78,9 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Gets the board with the specified <paramref name="board"/> identifier.
         /// </summary>
         /// <param name="board">The identifier of the board to be retrieved. Can be either the ID of the board or the
-        /// part of the URL like <code>&lt;username&gt;/&lt;board_name&gt;</code></param>
+        /// part of the URL like <c>&lt;username&gt;/&lt;board_name&gt;</c></param>
         /// <param name="fields">The fields to be returned for the board.</param>
-        /// <returns>Returns an instance of <see cref="PinterestGetBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestGetBoardResponse"/> representing the response.</returns>
         public PinterestGetBoardResponse GetBoard(string board, PinterestFieldsCollection fields) {
             return PinterestGetBoardResponse.ParseResponse(Raw.GetBoard(board, fields));
         }
@@ -92,7 +89,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Gets the board matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="PinterestGetBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestGetBoardResponse"/> representing the response.</returns>
         public PinterestGetBoardResponse GetBoard(PinterestGetBoardOptions options) {
             return PinterestGetBoardResponse.ParseResponse(Raw.GetBoard(options));
         }
@@ -101,10 +98,10 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Edits the board with the specified <paramref name="board"/> identifier.
         /// </summary>
         /// <param name="board">The identifier of the board to be retrieved. Can be either the ID of the board or the
-        /// part of the URL like <code>&lt;username&gt;/&lt;board_name&gt;</code></param>
+        /// part of the URL like <c>&lt;username&gt;/&lt;board_name&gt;</c></param>
         /// <param name="name">The new name of the board.</param>
         /// <param name="description">The new description of the board.</param>
-        /// <returns>Returns an instance of <see cref="PinterestEditBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestEditBoardResponse"/> representing the response.</returns>
         public PinterestEditBoardResponse EditBoard(string board, string name, string description) {
             return PinterestEditBoardResponse.ParseResponse(Raw.EditBoard(board, name, description));
         }
@@ -113,11 +110,11 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Edits the board with the specified <paramref name="board"/> identifier.
         /// </summary>
         /// <param name="board">The identifier of the board to be retrieved. Can be either the ID of the board or the
-        /// part of the URL like <code>&lt;username&gt;/&lt;board_name&gt;</code></param>
+        /// part of the URL like <c>&lt;username&gt;/&lt;board_name&gt;</c></param>
         /// <param name="name">The new name of the board.</param>
         /// <param name="description">The new description of the board.</param>
         /// <param name="fields">The fields to be returned for the board.</param>
-        /// <returns>Returns an instance of <see cref="PinterestEditBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestEditBoardResponse"/> representing the response.</returns>
         public PinterestEditBoardResponse EditBoard(string board, string name, string description, PinterestFieldsCollection fields) {
             return PinterestEditBoardResponse.ParseResponse(Raw.EditBoard(board, name, description, fields));
         }
@@ -126,7 +123,7 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// Edits the board matching the specified <paramref name="options"/>.
         /// </summary>
         /// <param name="options">The options for the call to the API.</param>
-        /// <returns>Returns an instance of <see cref="PinterestEditBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestEditBoardResponse"/> representing the response.</returns>
         public PinterestEditBoardResponse EditBoard(PinterestEditBoardOptions options) {
             return PinterestEditBoardResponse.ParseResponse(Raw.EditBoard(options));
         }
@@ -136,9 +133,8 @@ namespace Skybrud.Social.Pinterest.Endpoints {
         /// </summary>
         /// <param name="board">The identifier of the board to be retrieved. Can be either the ID of the board or the
         /// part of the URL like <code>&lt;username&gt;/&lt;board_name&gt;</code></param>
-        /// <returns>Returns an instance of <see cref="PinterestDeleteBoardResponse"/> representing the response.</returns>
+        /// <returns>An instance of <see cref="PinterestDeleteBoardResponse"/> representing the response.</returns>
         public PinterestDeleteBoardResponse DeleteBoard(string board) {
-            if (String.IsNullOrEmpty(board)) throw new ArgumentNullException("board");
             return PinterestDeleteBoardResponse.ParseResponse(Raw.DeleteBoard(board));
         }
 

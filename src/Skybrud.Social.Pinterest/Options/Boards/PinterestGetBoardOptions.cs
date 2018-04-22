@@ -4,10 +4,13 @@ using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.Pinterest.Fields;
 
 namespace Skybrud.Social.Pinterest.Options.Boards {
-    
+
+    /// <summary>
+    /// Class with options for a request to the Pinterest API for getting information about a single Pinterest board.
+    /// </summary>
     public class PinterestGetBoardOptions : IHttpGetOptions {
 
-        #region Constructors
+        #region Properties
 
         /// <summary>
         /// Gets or set the identifier of the board to be retrieved.
@@ -50,6 +53,12 @@ namespace Skybrud.Social.Pinterest.Options.Boards {
 
         #endregion
 
+        #region Member methods
+
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
+        /// <returns>An instance of <see cref="IHttpQueryString"/>.</returns>
         public IHttpQueryString GetQueryString() {
             
             // Convert the collection of fields to a string
@@ -62,7 +71,9 @@ namespace Skybrud.Social.Pinterest.Options.Boards {
             return query;
 
         }
-    
+
+        #endregion
+
     }
 
 }
