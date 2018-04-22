@@ -137,7 +137,7 @@ namespace Skybrud.Social.Pinterest.OAuth {
         public PinterestTokenResponse GetAccessTokenFromAuthCode(string authCode) {
 
             // Initialize the POST data
-            NameValueCollection data = new NameValueCollection {
+            SocialHttpPostData data = new SocialHttpPostData {
                 {"client_id", ClientId},
                 {"client_secret", ClientSecret},
                 {"code", authCode },

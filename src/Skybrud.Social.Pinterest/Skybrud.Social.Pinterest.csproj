@@ -1,140 +1,59 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB44FFDB-EC9F-4A25-BCDE-9857D56414DB}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netstandard1.3;net45;net46</TargetFrameworks>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <RunBuildTargets>true</RunBuildTargets>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <RootNamespace>Skybrud.Social.Pinterest</RootNamespace>
-    <AssemblyName>Skybrud.Social.Pinterest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <Version>1.0.0-beta001</Version>
+    <Company>Skybrud.dk a/s</Company>
+    <Product>Skybrud.Social</Product>
+    <Authors>Anders Bjerner</Authors>
+    <Copyright>Copyright © 2018</Copyright>
+    <Description>Authentication and service implementation for the Pinterest API.</Description>
+    <RepositoryUrl>https://github.com/abjerner/Skybrud.Social</RepositoryUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Skybrud.Social.Pinterest.xml</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Skybrud.Essentials, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skybrud.Essentials.1.1.3\lib\net45\Skybrud.Essentials.dll</HintPath>
-    </Reference>
-    <Reference Include="Skybrud.Social.Core, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skybrud.Social.Core.1.0.5\lib\net45\Skybrud.Social.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Endpoints\PinterestBoardsEndpoint.cs" />
-    <Compile Include="Endpoints\PinterestPinsEndpoint.cs" />
-    <Compile Include="Endpoints\PinterestUsersEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\PinterestBoardsRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\PinterestPinsRawEndpoint.cs" />
-    <Compile Include="Endpoints\Raw\PinterestUsersRawEndpoint.cs" />
-    <Compile Include="Enums\PinterestAccountType.cs" />
-    <Compile Include="Exceptions\PinterestHttpException.cs" />
-    <Compile Include="Exceptions\PinterestParseException.cs" />
-    <Compile Include="Fields\PinterestBoardFields.cs" />
-    <Compile Include="Fields\PinterestPinFields.cs" />
-    <Compile Include="Fields\PinterestField.cs" />
-    <Compile Include="Fields\PinterestFieldsCollection.cs" />
-    <Compile Include="Fields\PinterestUserFields.cs" />
-    <Compile Include="OAuth\PinterestOAuthClient.cs" />
-    <Compile Include="Objects\Authentication\PinterestTokenSummary.cs" />
-    <Compile Include="Objects\Boards\Http\PinterestEditBoardResponseBody.cs" />
-    <Compile Include="Objects\Boards\Http\PinterestGetBoardResponseBody.cs" />
-    <Compile Include="Objects\Boards\Http\PinterestCreateBoardResponseBody.cs" />
-    <Compile Include="Objects\Boards\PinterestBoard.cs" />
-    <Compile Include="Objects\Boards\PinterestBoardCounts.cs" />
-    <Compile Include="Objects\Users\PinterestUserItem.cs" />
-    <Compile Include="Objects\Common\PinterestRateLimiting.cs" />
-    <Compile Include="Objects\Common\PinterestAttribution.cs" />
-    <Compile Include="Objects\Common\PinterestMedia.cs" />
-    <Compile Include="Objects\Common\PinterestImage.cs" />
-    <Compile Include="Objects\Common\PinterestImageSize.cs" />
-    <Compile Include="Objects\Pins\Http\PinterestGetPinResponseBody.cs" />
-    <Compile Include="Objects\Pins\Http\PinterestGetPinsResponseBody.cs" />
-    <Compile Include="Objects\Pins\PinterestPin.cs" />
-    <Compile Include="Objects\Pins\PinterestPinMetadata.cs" />
-    <Compile Include="Objects\Pins\PinterestPinBoard.cs" />
-    <Compile Include="Objects\Pins\PinterestPinCounts.cs" />
-    <Compile Include="Objects\Pins\PinterestPinCreator.cs" />
-    <Compile Include="Objects\Pins\PinterestPinImage.cs" />
-    <Compile Include="Objects\Common\PinterestPlace.cs" />
-    <Compile Include="Objects\PinterestError.cs" />
-    <Compile Include="Objects\PinterestObject.cs" />
-    <Compile Include="Objects\Users\Http\PinterestGetUserResponseBody.cs" />
-    <Compile Include="Objects\Users\PinterestUser.cs" />
-    <Compile Include="Objects\Users\PinterestUserCounts.cs" />
-    <Compile Include="Objects\Users\PinterestUserImage.cs" />
-    <Compile Include="Objects\Users\PinterestUserImageSize.cs" />
-    <Compile Include="Options\Boards\PinterestEditBoardOptions.cs" />
-    <Compile Include="Options\Boards\PinterestGetBoardOptions.cs" />
-    <Compile Include="Options\Boards\PinterestCreateBoardOptions.cs" />
-    <Compile Include="Options\PinterestGetPinOptions.cs" />
-    <Compile Include="Options\PinterestGetPinsOptions.cs" />
-    <Compile Include="Options\PinterestGetUserOptions.cs" />
-    <Compile Include="PinterestService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyInfoGenerated.cs" />
-    <Compile Include="Responses\Authentication\PinterestTokenResponse.cs" />
-    <Compile Include="Responses\Boards\PinterestEditBoardResponse.cs" />
-    <Compile Include="Responses\Boards\PinterestGetBoardResponse.cs" />
-    <Compile Include="Responses\Boards\PinterestDeleteBoardResponse.cs" />
-    <Compile Include="Responses\Boards\PinterestCreateBoardResponse.cs" />
-    <Compile Include="Responses\Pins\PinterestGetPinResponse.cs" />
-    <Compile Include="Responses\Pins\PinterestGetPinsResponse.cs" />
-    <Compile Include="Responses\PinterestResponse.cs" />
-    <Compile Include="Responses\Users\PinterestGetUserResponse.cs" />
-    <Compile Include="Scopes\PinterestScope.cs" />
-    <Compile Include="Scopes\PinterestScopeCollection.cs" />
-    <Compile Include="Scopes\PinterestScopes.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Properties\AssemblyInfo.json" />
-    <None Include="Skybrud.Social.Pinterest.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LICENSE.html" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
   <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)Skybrud.Social.PreBuildTool.exe" 2015-10-14 "$(ProjectPath)"</PreBuildEvent>
+    <PackageTags>Skybrud, Social, Pinterest, Api, OAuth, JSON</PackageTags>
+    <PackageLicenseUrl>https://github.com/abjerner/Skybrud.Social.Pinterest/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/abjerner/Skybrud.Social.Pinterest</PackageProjectUrl>
+    <PackageIconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</PackageIconUrl>
   </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)..\src\build\UpdateAssemblyInfoJson.exe" "$(ProjectPath)" "$(TargetPath)</PostBuildEvent>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
+    <DefineConstants>NET_STANDARD</DefineConstants>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+    <DefineConstants>NET_FRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Skybrud.Social.Core" Version="1.0.5" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.3|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.3\Skybrud.Social.Pinterest.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>bin\Release\net45\Skybrud.Social.Pinterest.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net46|AnyCPU'">
+    <DocumentationFile>bin\Release\net46\Skybrud.Social.Pinterest.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='netstandard1.3|true'">
+    <Exec Command="&quot;$(SolutionDir)build/Skybrud.Social.PreBuildTool.exe&quot; /date=2015-10-14 /projectPath=&quot;$(ProjectPath)&quot;" />
   </Target>
-  <Target Name="AfterBuild">
+
+  <Target Name="PostBuild" BeforeTargets="PostBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='net46|true'">
+    <Exec Command="&quot;$(SolutionDir)build\UpdateAssemblyInfoJson.exe&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
   </Target>
-  -->
+
 </Project>
